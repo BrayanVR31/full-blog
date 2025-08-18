@@ -8,6 +8,8 @@ services:
     env_file: ./.env
     networks: 
       - blog-net
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
   db-adminer:
     image: adminer
     restart: always
@@ -31,3 +33,5 @@ services:
 networks:
   blog-net:
     driver: bridge
+volumes:
+  postgres_data:

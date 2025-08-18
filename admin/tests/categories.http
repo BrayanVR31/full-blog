@@ -1,0 +1,23 @@
+GET http://localhost:3000/api/categories
+
+###
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+{
+  "name": "category b",
+  "slug": "category-b"
+}
+
+###
+PUT http://localhost:3000/api/categories/dsfds
+Content-Type: application/json
+{
+  "name": "category A",
+  "slug": "category-a"
+}
+
+###
+GET http://localhost:3000/api/categories/08a39ec1-89e3-42a1-a63e-5c9bd4cba24c
+
+###
+DELETE http://localhost:3000/api/categories/dsaas

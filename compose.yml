@@ -1,0 +1,33 @@
+services:
+  blog-db:
+    image: postgres:17-alpine
+    restart: always
+    container_name: blog-db
+    ports:
+      - "5432:5432"
+    env_file: ./.env
+    networks: 
+      - blog-net
+  db-adminer:
+    image: adminer
+    restart: always
+    container_name: db-adminer
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - blog-db
+    networks: 
+      - blog-net
+  blog-dashboard:
+    build:
+      context: ./admin
+    ports:
+      - "3000:3000"
+    container_name: blog-dashboard
+    depends_on: 
+      - blog-db
+    networks: 
+      - blog-net
+networks:
+  blog-net:
+    driver: bridge

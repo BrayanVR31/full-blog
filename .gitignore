@@ -1,0 +1,30 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+admin/node_modules/
+admin/.pnp
+admin/.pnp.js
+
+# Build artifacts
+admin/.next/
+admin/out/
+admin/build/
+
+# Static exports
+admin/dist/
+
+# Miscellaneous
+admin/.DS_Store
+admin/*.pem
+admin/npm-debug.log*
+admin/yarn-debug.log*
+admin/yarn-error.log*
+admin/lerna-debug.log*
+admin/.idea
+admin/.vscode
+
+# Local environment variables
+.env
+.env*.local
+admin/.env
+admin/.env*.local

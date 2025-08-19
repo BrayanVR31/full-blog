@@ -1,0 +1,41 @@
+services:
+  blog-db:
+    image: postgres:17-alpine
+    restart: always
+    container_name: blog-db
+    ports:
+      - "5432:5432"
+    env_file: ./.env
+    networks: 
+      - blog-net
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  db-adminer:
+    image: adminer
+    restart: always
+    container_name: db-adminer
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - blog-db
+    networks: 
+      - blog-net
+  blog-dashboard:
+    build:
+      context: ./admin
+      target: dev
+    ports:
+      - "3000:3000"
+    container_name: blog-dashboard 
+    command: npm run dev
+    depends_on: 
+      - blog-db
+    networks: 
+      - blog-net
+    volumes:
+      - ./admin:/usr/src/app
+networks:
+  blog-net:
+    driver: bridge
+volumes:
+  postgres_data:

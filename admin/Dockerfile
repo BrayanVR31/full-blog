@@ -1,11 +1,16 @@
 FROM node:22.18.0-slim AS deps
 WORKDIR /usr/src/app
+COPY package.json ./
+ENV NODE_OPTIONS=--max-old-space-size=4096
+RUN npm install
+
+FROM node:22.18.0-slim AS dev
+WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm ci
 
 FROM node:22.18.0-slim AS builder
 WORKDIR /usr/src/app
-COPY  --from=deps /usr/src/app/package*.json ./
+COPY  --from=deps /usr/src/app/package.json ./
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY . ./
 RUN npm run build

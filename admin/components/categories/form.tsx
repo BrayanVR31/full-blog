@@ -46,15 +46,13 @@ export default function CategoryForm() {
     }
   }, [name]);
 
-  const onSubmit: SubmitHandler<CategoryInput> = async (data) => {
-    console.log(data);
-    const response = await fetch("/api/categories", {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
-    const jsonData = await response.json();
-    console.log(jsonData);
+  const onSubmit: SubmitHandler<CategoryInput> = async (category) => {
+    const categoryForm = new FormData();
+    categoryForm.set("name", category.name)
+    categoryForm.set("slug", category.slug)
+    await createCategory(categoryForm);
   };
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">

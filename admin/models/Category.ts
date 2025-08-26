@@ -42,3 +42,5 @@ export class Category {
   })
   updatedAt!: Date;
 }
+
+export type CategoryType = Omit<Category, "">

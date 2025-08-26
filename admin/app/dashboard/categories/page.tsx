@@ -1,6 +1,6 @@
+import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
+import { Plus } from "lucide-react";
 import CategoryForm from "@/components/categories/form";
-import DataTable from "@/components/data-table";
-import StatCards from "@/components/stat-cards";
 import { Button } from "@/components/ui/button";
 import {
   DialogContent,
@@ -9,9 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { getDB } from "@/lib/db";
 import { Category } from "@/models/Category";
-import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
-import { Plus } from "lucide-react";
-import { columns } from "@/components/categories/columns";
+import { CategoryList } from "@/components/categories/category-list";
 
 export default async function CategoriesPage() {
   const db = await getDB();
@@ -41,16 +39,7 @@ export default async function CategoriesPage() {
           </DialogContent>
         </Dialog>
       </div>
-      <StatCards
-        filteredTotal={0}
-        searchKeyword=""
-        title="Total Collections"
-        total={categories.length}
-      />
-      <DataTable
-        columns={columns}
-        data={JSON.parse(JSON.stringify(categories))}
-      />
+      <CategoryList categories={JSON.parse(JSON.stringify(categories))} />
     </main>
   );
 }

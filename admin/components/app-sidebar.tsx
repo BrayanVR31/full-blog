@@ -43,28 +43,24 @@ const data = {
   navMain: [
     {
       title: "Posts",
-      url: "#",
+      url: "",
       icon: LayoutDashboard,
       isActive: true,
       items: [
         {
-          title: "Create",
-          url: "#",
-        },
-        {
           title: "List",
-          url: "#",
+          url: "posts",
         },
       ],
     },
     {
       title: "Categories",
-      url: "#",
+      url: "",
       icon: Tags,
       items: [
         {
           title: "List",
-          url: "#",
+          url: "categories",
         },
       ],
     },
